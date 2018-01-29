@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cloud-eureka
+  labels:
+    app: cloud-eureka
+  namespace: micro-cloud
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cloud-eureka
+    spec:
+      containers:
+      - name: cloud-eureka
+        image: maven.cherrish.com/respository/cloud-eureka
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 10110
+        env:
+        - name: server_port
+          value: 10110
+        - name: eureka_instance_hostname
+          value: 192.168.1.111
+        - name: security_user_name
+          value: admin
+        - name: security_user_password
+          value: ${REGISTRY_SERVER_PASSWORD:admin}
+        volumeMounts:
+        - name: volume
+          mountPath: /root/cherrish/cloud-eureka/resources
+        - name: volume1
+          mountPath: /root/cherrish/cloud-eureka/chaincodes
+      volumes:
+      - name: volume
+        hostPath:
+          path: /data/share/resources
+      - name: volume1
+        hostPath:
+          path: /data/share/chaincodes
