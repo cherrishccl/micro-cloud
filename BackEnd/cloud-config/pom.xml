@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cherrish</groupId>
-	<artifactId>cloud-eureka</artifactId>
+	<artifactId>cloud-config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>cloud-eureka</name>
-	<description>Eureka</description>
+	<name>cloud-config</name>
+	<description>Config</description>
 
 	<parent>
 		<groupId>com.cherrish</groupId>
@@ -26,9 +26,14 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
